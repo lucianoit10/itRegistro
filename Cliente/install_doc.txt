@@ -1,0 +1,12 @@
+-dar permisos a todas las librerias:
+	sudo chmod -R 755 it_registro_cliente_lib/
+
+-dar permiso de ejecucion al archivo Jar:
+	sudo chmod -R 755 it_registro_cliente.jar
+
+-dar permisos al archivo sh
+
+-dar permisos a los archivos de configuracion:
+	sudo chmod -R 766 conf.ini 
+	sudo chmod -R 766 interface.ini
+

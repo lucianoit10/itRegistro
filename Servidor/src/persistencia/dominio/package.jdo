@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jdo PUBLIC
+    "-//Sun Microsystems, Inc.//DTD Java Data Objects Metadata 2.0//EN"
+    "http://java.sun.com/dtd/jdo_2_0.dtd">
+<jdo>
+    <package name="persistencia.dominio">
+        <class name="Lugar">
+        	<inheritance strategy="new-table"/>
+            <field name="id" primary-key="true" value-strategy="identity" persistence-modifier="persistent"/>
+            <field name="nombre" persistence-modifier="persistent"/>
+            <field name="direccion" persistence-modifier="persistent"/>
+            <field name="eliminado" persistence-modifier="persistent"/>
+        </class>
+        <class name="Persona">
+        	<inheritance strategy="new-table"/>
+            <field name="id" primary-key="true" value-strategy="identity" persistence-modifier="persistent"/>
+            <field name="nombre" persistence-modifier="persistent"/>
+            <field name="apellido" persistence-modifier="persistent"/>
+            <field name="dni_cuil_cuit" unique="true" persistence-modifier="persistent"/>
+            <field name="tel_contacto" persistence-modifier="persistent"/>
+            <field name="direccion" persistence-modifier="persistent"/>
+            <field name="registro" persistence-modifier="persistent"/>
+            <field name="eliminado" persistence-modifier="persistent"/>
+        </class>
+        <class name="Organizacion">
+        	<inheritance strategy="new-table"/>
+            <field name="id" primary-key="true" value-strategy="identity" persistence-modifier="persistent"/>
+            <field name="nombre" persistence-modifier="persistent"/>
+            <field name="cuit" unique="true" persistence-modifier="persistent"/>
+            <field name="eliminado" persistence-modifier="persistent"/>
+        </class>        
+        <class name="PersonalOrganizacion">
+        	<inheritance strategy="new-table"/>
+            <field name="id" primary-key="true" value-strategy="identity" persistence-modifier="persistent"/>
+            <field name="persona"  persistence-modifier="persistent">
+                <foreign-key name="fk_pers" delete-action="null"/>
+            </field>
+            <field name="org"  persistence-modifier="persistent">
+                <foreign-key name="fkpers_org" delete-action="null"/>
+            </field>
+            <field name="ingreso" persistence-modifier="persistent"/>
+            <field name="salida" persistence-modifier="persistent"/>
+            <field name="motivo" persistence-modifier="persistent"/>
+            <field name="eliminado" persistence-modifier="persistent"/>
+        </class>
+        <class name="UsuarioOrganizacion">
+        	<inheritance strategy="new-table"/>
+            <field name="id" primary-key="true" value-strategy="identity" persistence-modifier="persistent"/>
+            <field name="usuario"  persistence-modifier="persistent">
+                <foreign-key name="fk_user" delete-action="cascade"/>
+            </field>
+            <field name="org"  persistence-modifier="persistent">
+                <foreign-key name="fk_user_org" delete-action="cascade"/>
+            </field>
+        </class>
+        <class name="Usuario">
+        	<inheritance strategy="new-table"/>
+            <field name="id" primary-key="true" value-strategy="identity" persistence-modifier="persistent"/>
+            <field name="nombre_usuario" unique="true" persistence-modifier="persistent"/>
+            <field name="contrasena" persistence-modifier="persistent"/>
+            <field name="cambiar_contrasena" persistence-modifier="persistent"/>
+            <field name="permiso" persistence-modifier="persistent"/>
+        </class>
+        <class name="Registro">
+        	<inheritance strategy="new-table"/>
+            <field name="id" primary-key="true" value-strategy="identity" persistence-modifier="persistent"/>
+            <field name="personalOrg"  persistence-modifier="persistent">
+                <foreign-key name="fk_pers_org" delete-action="null"/>
+            </field>
+            <field name="lugar"  persistence-modifier="persistent">
+                <foreign-key name="fk_lugar" delete-action="null"/>
+            </field>
+            <field name="ingreso" persistence-modifier="persistent"/>
+            <field name="salida" persistence-modifier="persistent"/>
+            <field name="descripcion" persistence-modifier="persistent"/>
+        </class>
+    </package>
+</jdo>
